@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'login_widget.dart';
-
+import 'username_text_field.dart';
+import 'login_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -33,7 +33,11 @@ class CardedHomePage extends StatelessWidget{
         appBar: AppBar(title: Text("Carded")),
         body: Column(children: <Widget>[
           SizedBox(height: 200),
-          LoginWidget(),
+          ElevatedButton( child: Text("Login Page"), onPressed:(){
+            Navigator.push(
+                context, MaterialPageRoute(
+                builder: (context) => LoginScreen()));
+          }),
           SizedBox(height: 50),
           NavigationButton(),
           SizedBox(height: 50),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 
-class LoginWidget extends StatefulWidget {
+class UsernameTextField extends StatefulWidget {
 
   @override
   _TextInputWidgetState createState() => _TextInputWidgetState();
 }
 
-class _TextInputWidgetState extends State<LoginWidget> {
+class _TextInputWidgetState extends State<UsernameTextField> {
   final controller = TextEditingController();
   String text = "";
   @override
