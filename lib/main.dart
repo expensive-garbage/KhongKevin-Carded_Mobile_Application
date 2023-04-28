@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,9 +33,9 @@ class CardedHomePage extends StatelessWidget{
         appBar: AppBar(title: Text("Carded")),
         body: Column(children: <Widget>[
           SizedBox(height: 200),
-          TextInputWidget(),
+          LoginWidget(),
           SizedBox(height: 50),
-          (NavigationButton()),
+          NavigationButton(),
           SizedBox(height: 50),
 
           NavigationButton()]),);
@@ -50,16 +51,3 @@ class NavigationButton extends StatelessWidget {
   }
 }
 
-class LoginWidget extends StatefulWidget {
-
-  @override
-  _TextInputWidgetState createState() => _TextInputWidgetState();
-}
-
-class _TextInputWidgetState extends State<LoginWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return TextField(decoration: InputDecoration(prefixIcon: Icon(Icons.account_circle), labelText: "Login Username:"),);
-
-  }
-}
