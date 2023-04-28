@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 
-class UsernameTextField extends StatefulWidget {
+class EmailTextField extends StatefulWidget {
 
   @override
   _TextInputWidgetState createState() => _TextInputWidgetState();
 }
 
-class _TextInputWidgetState extends State<UsernameTextField> {
+class _TextInputWidgetState extends State<EmailTextField> {
   final controller = TextEditingController();
   String text = "";
   @override
@@ -32,7 +32,7 @@ class _TextInputWidgetState extends State<UsernameTextField> {
               controller: this.controller,
               decoration: InputDecoration(
                   prefixIcon: Icon(Icons.account_circle),
-                  labelText: "Username:"),
+                  labelText: "Email:"),
               onChanged: (text)=> this.changeText(text),
             )
         ),

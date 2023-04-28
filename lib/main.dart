@@ -1,6 +1,7 @@
+import 'package:carded/sign_up_screen.dart';
 import 'package:flutter/material.dart';
-import 'username_text_field.dart';
 import 'login_screen.dart';
+import 'settings_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -31,27 +32,63 @@ class CardedHomePage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("Carded")),
-        body: Column(children: <Widget>[
-          SizedBox(height: 200),
-          ElevatedButton( child: Text("Login Page"), onPressed:(){
-            Navigator.push(
-                context, MaterialPageRoute(
-                builder: (context) => LoginScreen()));
-          }),
-          SizedBox(height: 50),
-          NavigationButton(),
-          SizedBox(height: 50),
+        body: Container(
+            child: FractionallySizedBox(
+              heightFactor: 0.7,
+              child:
+              Center(
+                child:Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 200.0, // set the desired width here
+                        child: ElevatedButton(
+                          child: Text("Login Page"),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginScreen()),
+                            );
+                          },
+                        ),
+                      ),
 
-          NavigationButton()]),);
+                      SizedBox(height: 50),
+                      SizedBox(
+                        width: 200.0, // set the desired width here
+                        child: ElevatedButton(
+                          child: Text("Sign Up Page"),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SignUpScreen()),
+                            );
+                          },
+                        ),
+                      ),
+
+
+                      SizedBox(height: 50),
+                      SizedBox(
+                        width: 200.0, // set the desired width here
+                        child: ElevatedButton(
+                          child: Text("Settings Page"),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SettingsScreen()),
+                            );
+                          },
+                        ),
+                      ),]
+                ),
+              )
+            )
+          )
+        );
 
   }
 
-}
-
-class NavigationButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context){
-    return Center(child: Text("Nav Button"));
-  }
 }
 
