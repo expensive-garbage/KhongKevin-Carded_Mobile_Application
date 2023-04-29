@@ -2,13 +2,18 @@ import 'package:carded/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'settings_screen.dart';
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: CardedHomePage(),
+      home: const CardedHomePage(),
     );
   }
 }
@@ -27,11 +32,10 @@ class MyApp extends StatelessWidget {
 
 class CardedHomePage extends StatelessWidget{
   const CardedHomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Carded")),
+        appBar: AppBar(title: const Text("Carded")),
         body: Container(
             child: FractionallySizedBox(
               heightFactor: 0.7,
