@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>450567145174-t4fq1fvs03ideiprkmde77q0lqec8l8t.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.450567145174-t4fq1fvs03ideiprkmde77q0lqec8l8t</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA2wXTbe9S3FrQi86G9jVgPbvWehmOKXJU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>450567145174</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.carded</string>
+	<key>PROJECT_ID</key>
+	<string>carded-firebase</string>
+	<key>STORAGE_BUCKET</key>
+	<string>carded-firebase.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:450567145174:ios:f1f497eee5a30af0a8ab77</string>
+</dict>
+</plist>

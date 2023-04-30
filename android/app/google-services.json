@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "450567145174",
+    "project_id": "carded-firebase",
+    "storage_bucket": "carded-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450567145174:android:8f1976cbb56cbf66a8ab77",
+        "android_client_info": {
+          "package_name": "com.example.carded"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "450567145174-1lh59435mk3n69fv4pn5nfifubn7qn8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALT20ewlEqteCVQwUkrx6fDJ-5q2P8R4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "450567145174-1lh59435mk3n69fv4pn5nfifubn7qn8c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
