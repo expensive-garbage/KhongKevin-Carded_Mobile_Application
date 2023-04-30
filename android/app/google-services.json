@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "450567145174",
+    "firebase_url": "https://carded-firebase-default-rtdb.firebaseio.com",
     "project_id": "carded-firebase",
     "storage_bucket": "carded-firebase.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "450567145174-pdfdhdq5rc0mtseosaruaqd64ilme6q3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.carded",
+            "certificate_hash": "29ea91fa2f81e379430358aee3609a1be4406c61"
+          }
+        },
         {
           "client_id": "450567145174-1lh59435mk3n69fv4pn5nfifubn7qn8c.apps.googleusercontent.com",
           "client_type": 3
@@ -29,6 +38,13 @@
             {
               "client_id": "450567145174-1lh59435mk3n69fv4pn5nfifubn7qn8c.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "450567145174-t4fq1fvs03ideiprkmde77q0lqec8l8t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.carded"
+              }
             }
           ]
         }
