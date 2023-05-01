@@ -54,7 +54,7 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Wallet")), body: FractionallySizedBox(heightFactor: 0.9,
+        appBar: AppBar(title: Text("Wallet")), body: FractionallySizedBox(heightFactor: 1.0,
           child: Center(
             child: AnimatedBuilder(
               animation: _controller,
@@ -78,14 +78,14 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
                   CardDisplay(firstName: "Castel", lastName: "Vilallobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
                   SizedBox(width: 50, height: 20),
                     CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
-                    SizedBox(width: 50, height: 20),
+
                   ],
                 ),
             ),
           ),
         ),
       bottomNavigationBar: Container(
-        height: 30,
+        height: 60,
         alignment: Alignment.bottomCenter,
         child: InkWell(
           borderRadius: BorderRadius.only(
@@ -106,11 +106,12 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(15), topRight: Radius.circular(15),
               ),
-            ), height: 30, width: 300,
+            ), height: 60, width: 300,
             alignment: Alignment.center,
             child: Text(
               _isFlipped ? 'Hide Wallet' : 'Show Wallet',
               style: TextStyle(
+                fontSize: 20,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
