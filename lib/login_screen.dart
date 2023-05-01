@@ -2,6 +2,7 @@ import 'package:carded/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import '';
 class LoginScreen extends StatelessWidget {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   @override
@@ -14,8 +15,16 @@ class LoginScreen extends StatelessWidget {
         child: MaterialButton(
           onPressed: () {
             _googleSignIn.signIn().then((value) {
-              DocumentReference doc = database.collection("users").where("Email", isEqualTo: value!.email) as DocumentReference<Object?>;
-              print(doc.id);
+              database.collection("users").where("Email", isEqualTo: value!.email).get().then(
+                      (querySnapshot) {
+                        print("----------------------------------------------------Success-------------------------------------------------------");
+                        for (var docSnapshot in querySnapshot.docs){
+                          User loggedIn = User(docSnapshot.id, docSnapshot['Email'], docSnapshot['Card'], docSnapshot['Wallet']);
+                          print(loggedIn.toString());
+                        }
+                      },
+                onError: (e) => debugPrint("Error completing: $e")
+              );
             });
           },
           color: Colors.deepOrange,

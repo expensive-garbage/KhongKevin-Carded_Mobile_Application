@@ -5,14 +5,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 FirebaseFirestore database = FirebaseFirestore.instance;
 
 class User{
-  late int userId;
+  late String refId;
   late String email;
-  late User_Card card;
-  List<User_Card> wallet = [];
+  late String card;
+  List<String> wallet = [];
 
-  User(String e, String fname, String lname){
+  User(String r, String e, String c, List<dynamic> w){
+    refId = r;
     email = e;
-    card = User_Card(fname, lname, email);
+    card = c;
+    wallet = List<String>.from(w);
   }
 
   static Future<void> addUser(String email, String fname, String lname) async {
@@ -25,5 +27,10 @@ class User{
     };
     database.collection("users").add(user);
     print("User added");
+  }
+
+  @override
+  String toString(){
+    return("${refId}, ${email}, ${card}, ${wallet}");
   }
 }
