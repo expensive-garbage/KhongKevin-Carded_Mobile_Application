@@ -31,12 +31,12 @@ void main() {
     expect(find.text("Sign Up Screen"), findsOneWidget);
   });
 
-  testWidgets('Pressing the Settings Page button navigates to the Settings Screen', (WidgetTester tester) async {
+  testWidgets('Pressing the Wallet Page button navigates to the Wallet Screen', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
 
-    await tester.tap(find.text("Settings Page"));
+    await tester.tap(find.text("Wallet Page"));
     await tester.pumpAndSettle();
 
-    expect(find.text("I am broke"), findsOneWidget);
+    expect(find.text("Show Wallet"), findsOneWidget);
   });
 }
