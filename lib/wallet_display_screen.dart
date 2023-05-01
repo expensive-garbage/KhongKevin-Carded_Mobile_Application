@@ -1,7 +1,10 @@
+import 'package:carded/user.dart';
 import 'package:flutter/material.dart';
 import 'card_display.dart';
 
 class WalletDisplayScreen extends StatefulWidget {
+  final User loggedin;
+  const WalletDisplayScreen({Key? key, required this.loggedin}): super(key: key);
   @override
   _WalletDisplayScreenState createState() => _WalletDisplayScreenState();
 }
@@ -54,7 +57,7 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Wallet")), body: FractionallySizedBox(heightFactor: 0.9,
+        appBar: AppBar(title: Text(widget.loggedin.email)), body: FractionallySizedBox(heightFactor: 0.9,
           child: Center(
             child: AnimatedBuilder(
               animation: _controller,
@@ -69,7 +72,7 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
                   SizedBox(width: 50, height: 20),
                   CardDisplay(firstName: "Kevin", lastName: "Khong", email: "kevin79ers@gmail.com", linkedin: "linkedin.com/kevin-khong", website: "kevinkhong-portfolio.com",),
                   SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Castel", lastName: "Vilallobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
+                  CardDisplay(firstName: "Castel", lastName: "Villalobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
                   SizedBox(width: 50, height: 20),
                   CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
                   SizedBox(width: 50, height: 20),
