@@ -13,7 +13,6 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
   late Animation<Offset> _slideAnimation;
   late Animation<double> _fadeAnimation;
   bool _isFlipped = false;
-
   @override
   void initState() {
     super.initState();
@@ -53,39 +52,85 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
     _controller.reverse();
   }
 
+  //https://stackoverflow.com/questions/68119285/the-body-might-complete-normally-causing-null-to-be-returned-but-the-return
+
+  Future<List<CardDisplay>> _fetchCards(String userId) async {
+    List<CardDisplay> cardList = [];
+
+    try {
+      DocumentSnapshot userSnapshot = await FirebaseFirestore.instance.collection('users').doc(userId).get();
+      List<dynamic> walletArray = userSnapshot['wallet'];
+
+      for (var cardId in walletArray) {
+        DocumentSnapshot cardSnapshot = await FirebaseFirestore.instance.collection('cards').doc(cardId).get();
+        Map<String, dynamic> bioPage = cardSnapshot['biopage'];
+        Map<String, dynamic> contactPage = cardSnapshot['contact'];
+
+        cardList.add(
+          CardDisplay(
+            firstName: contactPage['fname'],
+            lastName: contactPage['Lname'],
+            email: contactPage['email'],
+            linkedin: contactPage['Linkedin'],
+            website: contactPage['Website'],
+            // Add more fields if necessary
+          ),
+        );
+      }
+    } catch (e) {
+      print("Error fetching cards: $e");
+      return [];
+    }
+
+    return cardList;
+  }
+
+
+  List<Widget> _buildCardList(List<CardDisplay> cards) {
+    List<Widget> cardList = [];
+    for (CardDisplay card in cards) {
+      cardList.add(SizedBox(height: 20));
+      cardList.add(card);
+    }
+    cardList.add(SizedBox(height: 20));
+    return cardList;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Wallet")), body: FractionallySizedBox(heightFactor: 1.0,
-          child: Center(
-            child: AnimatedBuilder(
-              animation: _controller,
-              builder: (context, child) {
-                return SlideTransition(
-                  position: _slideAnimation, child: FadeTransition(
-                    opacity: _fadeAnimation, child: child,
+      appBar: AppBar(title: Text("Wallet")),
+      body: FractionallySizedBox(
+        heightFactor: 1.0,
+        child: Center(
+          child: FutureBuilder<List<CardDisplay>>(
+            future: _fetchCards('mJVpc2oJuHu0wi73sOIo'),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) {
+                    return SlideTransition(
+                      position: _slideAnimation,
+                      child: FadeTransition(
+                        opacity: _fadeAnimation,
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: ListView(
+                    children: _buildCardList(snapshot.data!),
                   ),
                 );
-                }, child: ListView(
-                  children: [
-                  SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Kevin", lastName: "Khong", email: "kevin79ers@gmail.com", linkedin: "linkedin.com/kevin-khong", website: "kevinkhong-portfolio.com",),
-                  SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Castel", lastName: "Vilallobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
-                  SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
-                  SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Kevin", lastName: "Khong", email: "kevin79ers@gmail.com", linkedin: "linkedin.com/kevin-khong", website: "kevinkhong-portfolio.com",),
-                  SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Castel", lastName: "Vilallobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
-                  SizedBox(width: 50, height: 20),
-                    CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
-
-                  ],
-                ),
-            ),
+              }
+            },
           ),
         ),
+      ),
       bottomNavigationBar: Container(
         height: 60,
         alignment: Alignment.bottomCenter,
@@ -124,4 +169,3 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
     );
   }
 }
-
