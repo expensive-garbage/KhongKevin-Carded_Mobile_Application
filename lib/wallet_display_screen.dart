@@ -54,41 +54,36 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Wallet")),
-    body: FractionallySizedBox(
-    heightFactor: 0.9,
-    child: Center(
-    child: AnimatedBuilder(
-    animation: _controller,
-    builder: (context, child) {
-    return SlideTransition(
-    position: _slideAnimation,
-    child: FadeTransition(
-    opacity: _fadeAnimation,
-    child: child,
-    ),
-    );
-    },
-    child: ListView(
-    children: [
-    SizedBox(width: 50, height: 20),
-    CardDisplay(firstName: "Kevin", lastName: "Khong", email: "kevin79ers@gmail.com", linkedin: "linkedin.com/kevin-khong", website: "kevinkhong-portfolio.com",),
-    SizedBox(width: 50, height: 20),
-    CardDisplay(firstName: "Castel", lastName: "Vilallobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
-    SizedBox(width: 50, height: 20),
-    CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
-    SizedBox(width: 50, height: 20),
-    CardDisplay(firstName: "Kevin", lastName: "Khong", email: "kevin79ers@gmail.com", linkedin: "linkedin.com/kevin-khong", website: "kevinkhong-portfolio.com",),
-    SizedBox(width: 50, height: 20),
-    CardDisplay(firstName: "Castel", lastName: "Vilallobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
-    SizedBox(width: 50, height: 20),
-      CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
-      SizedBox(width: 50, height: 20),
-    ],
-    ),
-    ),
-    ),
-    ),
+        appBar: AppBar(title: Text("Wallet")), body: FractionallySizedBox(heightFactor: 0.9,
+          child: Center(
+            child: AnimatedBuilder(
+              animation: _controller,
+              builder: (context, child) {
+                return SlideTransition(
+                  position: _slideAnimation, child: FadeTransition(
+                    opacity: _fadeAnimation, child: child,
+                  ),
+                );
+                }, child: ListView(
+                  children: [
+                  SizedBox(width: 50, height: 20),
+                  CardDisplay(firstName: "Kevin", lastName: "Khong", email: "kevin79ers@gmail.com", linkedin: "linkedin.com/kevin-khong", website: "kevinkhong-portfolio.com",),
+                  SizedBox(width: 50, height: 20),
+                  CardDisplay(firstName: "Castel", lastName: "Vilallobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
+                  SizedBox(width: 50, height: 20),
+                  CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
+                  SizedBox(width: 50, height: 20),
+                  CardDisplay(firstName: "Kevin", lastName: "Khong", email: "kevin79ers@gmail.com", linkedin: "linkedin.com/kevin-khong", website: "kevinkhong-portfolio.com",),
+                  SizedBox(width: 50, height: 20),
+                  CardDisplay(firstName: "Castel", lastName: "Vilallobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
+                  SizedBox(width: 50, height: 20),
+                    CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
+                    SizedBox(width: 50, height: 20),
+                  ],
+                ),
+            ),
+          ),
+        ),
       bottomNavigationBar: Container(
         height: 30,
         alignment: Alignment.bottomCenter,
@@ -109,12 +104,9 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(15),
-                topRight: Radius.circular(15),
+                topLeft: Radius.circular(15), topRight: Radius.circular(15),
               ),
-            ),
-            height: 30,
-            width: 300,
+            ), height: 30, width: 300,
             alignment: Alignment.center,
             child: Text(
               _isFlipped ? 'Hide Wallet' : 'Show Wallet',
