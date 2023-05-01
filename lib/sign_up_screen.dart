@@ -1,10 +1,11 @@
-import 'package:carded/email_text_field.dart';
+import 'package:carded/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'username_text_field.dart';
-import 'password_text_field.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 class SignUpScreen extends StatelessWidget {
-  FirebaseDatabase database = FirebaseDatabase.instance;
+  FirebaseFirestore database = FirebaseFirestore.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -15,16 +16,21 @@ class SignUpScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
-                UsernameTextField(),
-                PasswordTextField(),
-                EmailTextField(),
-                ElevatedButton(onPressed: () {  },
-                    child: Text("Sign Up!"))],
+                SignInButton(
+                  Buttons.Google,
+                  onPressed: () {
+                    _googleSignIn.signIn().then((value) {
+                      List<String> name = value!.displayName!.split(" ");
+                      String Fname = name.first;
+                      String Lname = name.last;
+                      String Email = value.email;
+                      User.addUser(Email, Fname, Lname);
+                    });
+                  },
+                )],
             )
-        )
-
-    );
+          )
+        );
   }
 
 }
