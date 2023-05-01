@@ -1,7 +1,7 @@
 import 'dart:ffi';
 import 'dart:ui';
 
-class Card {
+class UserCard {
   late Int userId;
   late Image profilePicture;
   Map<String, String> contactPage = {
@@ -18,7 +18,7 @@ class Card {
   };
   List<String> skills = [];
 
-  Card(String fname, String lname, String email){
+  UserCard(String fname, String lname, String email){
     contactPage['Fname'] = fname;
     contactPage['Lname'] = lname;
     contactPage['Email'] = email;

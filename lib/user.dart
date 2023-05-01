@@ -1,15 +1,15 @@
-import 'package:carded/card.dart';
+import 'package:carded/user_card.dart';
 
-class User{
+class User {
   late int userId;
   late String email;
   late String password;
-  late Card card;
-  List<Card> wallet = [];
+  late UserCard card;
+  List<UserCard> wallet = [];
 
-  User(String e, String fname, String lname, String p){
+  User(String e, String fname, String lname, String p) {
     email = e;
     password = p;
-    card = Card(fname, lname, email);
+    card = UserCard(fname, lname, email);
   }
 }

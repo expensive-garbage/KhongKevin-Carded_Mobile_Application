@@ -1,4 +1,5 @@
 import 'package:carded/sign_up_screen.dart';
+import 'package:carded/wallet_display_screen.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'settings_screen.dart';
@@ -42,12 +43,9 @@ class CardedHomePage extends StatelessWidget{
               child:
               Center(
                 child:Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      SizedBox(
-                        width: 200.0, // set the desired width here
-                        child: ElevatedButton(
+                      SizedBox(width: 200.0, child: ElevatedButton(
                           child: Text("Login Page"),
                           onPressed: () {
                             Navigator.push(
@@ -77,11 +75,11 @@ class CardedHomePage extends StatelessWidget{
                       SizedBox(
                         width: 200.0, // set the desired width here
                         child: ElevatedButton(
-                          child: Text("Settings Page"),
+                          child: Text("Wallet Page"),
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => SettingsScreen()),
+                              MaterialPageRoute(builder: (context) => WalletDisplayScreen()),
                             );
                           },
                         ),
