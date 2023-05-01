@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'user_card.dart';
 
 class CardDisplay extends StatelessWidget {
   final String firstName;
@@ -29,29 +28,29 @@ class CardDisplay extends StatelessWidget {
           children: <Widget>[
             Text(
               '$firstName $lastName',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               email,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16.0,
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               linkedin ?? '',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16.0,
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               website ?? '',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16.0,
               ),
             ),

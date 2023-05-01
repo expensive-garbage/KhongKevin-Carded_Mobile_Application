@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 FirebaseFirestore database = FirebaseFirestore.instance;
 
-class Card {
+class User_Card {
   late Image profilePicture;
   Map<String, String> contactPage = {
     'Fname': '',
@@ -19,7 +19,7 @@ class Card {
   };
   List<String> skills = [];
 
-  Card(String fname, String lname, String email){
+  User_Card(String fname, String lname, String email){
     contactPage['Fname'] = fname;
     contactPage['Lname'] = lname;
     contactPage['Email'] = email;
