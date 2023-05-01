@@ -6,7 +6,6 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:carded/main.dart';
 import 'package:carded/login_screen.dart';
@@ -19,26 +18,25 @@ void main() {
     await tester.tap(find.text("Login Page"));
     await tester.pumpAndSettle();
 
-    expect(find.text("Google Sign in"), findsOneWidget);
+    expect(find.text("Login Screen"), findsOneWidget);
 
   });
 
-  // testWidgets('Pressing the Sign Up Page button navigates to the Sign Up Screen', (WidgetTester tester) async {
-  //   await tester.pumpWidget(const MyApp());
-  //
-  //   await tester.tap(find.text("Sign Up Page"));
-  //   await tester.pumpAndSettle();
-  //
-  //   // what am i doing
-  //   expect(find.text("Sign in with Google"), findsNothing);
-  // });
+  testWidgets('Pressing the Sign Up Page button navigates to the Sign Up Screen', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
 
-  // testWidgets('Pressing the Wallet Page button navigates to the Wallet Screen', (WidgetTester tester) async {
-  //   await tester.pumpWidget(const MyApp());
-  //
-  //   await tester.tap(find.text("Wallet Page"));
-  //   await tester.pumpAndSettle();
-  //
-  //   expect(find.text("Show Wallet"), findsOneWidget);
-  // });
+    await tester.tap(find.text("Sign Up Page"));
+    await tester.pumpAndSettle();
+
+    expect(find.text("Sign Up Screen"), findsOneWidget);
+  });
+
+  testWidgets('Pressing the Settings Page button navigates to the Settings Screen', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+
+    await tester.tap(find.text("Settings Page"));
+    await tester.pumpAndSettle();
+
+    expect(find.text("I am broke"), findsOneWidget);
+  });
 }
