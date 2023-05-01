@@ -1,8 +1,7 @@
 import 'package:carded/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:carded/wallet_display_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '';
 class LoginScreen extends StatelessWidget {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   @override
@@ -20,7 +19,10 @@ class LoginScreen extends StatelessWidget {
                         print("----------------------------------------------------Success-------------------------------------------------------");
                         for (var docSnapshot in querySnapshot.docs){
                           User loggedIn = User(docSnapshot.id, docSnapshot['Email'], docSnapshot['Card'], docSnapshot['Wallet']);
-                          print(loggedIn.toString());
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => WalletDisplayScreen(loggedin: loggedIn,))
+                          );
                         }
                       },
                 onError: (e) => debugPrint("Error completing: $e")

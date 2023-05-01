@@ -1,8 +1,6 @@
 import 'package:carded/sign_up_screen.dart';
-import 'package:carded/wallet_display_screen.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
-import 'settings_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 Future<void> main() async {
@@ -69,21 +67,7 @@ class CardedHomePage extends StatelessWidget{
                           },
                         ),
                       ),
-
-
-                      SizedBox(height: 50),
-                      SizedBox(
-                        width: 200.0, // set the desired width here
-                        child: ElevatedButton(
-                          child: Text("Wallet Page"),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => WalletDisplayScreen()),
-                            );
-                          },
-                        ),
-                      ),]
+                    ]
                 ),
               )
             )
