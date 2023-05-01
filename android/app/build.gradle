@@ -8,7 +8,7 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw new FileNotFoundException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -22,8 +22,8 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
@@ -33,13 +33,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-        warningOptions {
-            // Enable additional check options for lint.
-            checkReleaseBuilds false
-            // Turn off errors for unchecked warnings.
-            // The default is 'error'.
-            warning('unchecked', 'deprecation')
-        }
     }
 
     kotlinOptions {
@@ -59,6 +52,8 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
+        minSdkVersion 19
     }
 
     buildTypes {
@@ -76,8 +71,5 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation platform('com.google.firebase:firebase-bom:31.5.0')
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'androidx.multidex:multidex:2.0.1'  //with androidx libraries
-    //implementation 'com.android.support:multidex:1.0.3'  //with support libraries
+    implementation 'com.android.support:multidex:1.0.3'
 }

@@ -30,7 +30,7 @@ class _TextInputWidgetState extends State<EmailTextField> {
             width: 300,
             child: TextField(
               controller: this.controller,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.account_circle),
                   labelText: "Email:"),
               onChanged: (text)=> this.changeText(text),
