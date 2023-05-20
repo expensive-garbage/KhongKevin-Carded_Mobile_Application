@@ -14,7 +14,6 @@ class SettingsScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text("Idk what to put here lol"),
-                  Text("This takes so f'n long"),
                   ElevatedButton(onPressed: () {  },
                       child: Text("I am broke"))],
               )

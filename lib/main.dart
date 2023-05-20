@@ -1,10 +1,12 @@
+import 'package:carded/settings_screen.dart';
 import 'package:carded/sign_up_screen.dart';
 import 'package:carded/wallet_display_screen.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
-import 'settings_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'user.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -69,21 +71,36 @@ class CardedHomePage extends StatelessWidget{
                           },
                         ),
                       ),
-
-
                       SizedBox(height: 50),
                       SizedBox(
                         width: 200.0, // set the desired width here
                         child: ElevatedButton(
-                          child: Text("Wallet Page"),
+                          child: Text("Settings"),
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => WalletDisplayScreen()),
+                              MaterialPageRoute(builder: (context) => SettingsScreen()),
                             );
                           },
                         ),
-                      ),]
+                      ),
+                      SizedBox(height: 50),
+
+                      //This is a test, hard coded wallet in here in case the sign in / login authroization does not work :D
+                      SizedBox(
+                        width: 200.0, // set the desired width here
+                        child: ElevatedButton(
+                          child: Text("wallet display"),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => WalletDisplayScreen(loggedin: User("testID", "testEmail", "testCard", []))),
+                            );
+                          },
+
+                        ),
+                      ),
+                    ]
                 ),
               )
             )

@@ -1,8 +1,9 @@
-import 'dart:ffi';
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class UserCard {
-  late Int userId;
+FirebaseFirestore database = FirebaseFirestore.instance;
+
+class User_Card {
   late Image profilePicture;
   Map<String, String> contactPage = {
     'Fname': '',
@@ -18,9 +19,28 @@ class UserCard {
   };
   List<String> skills = [];
 
-  UserCard(String fname, String lname, String email){
+  User_Card(String fname, String lname, String email){
     contactPage['Fname'] = fname;
     contactPage['Lname'] = lname;
     contactPage['Email'] = email;
+  }
+
+  static Future<String> addCard(String fname, String lname, String email) async {
+    final card = <String, dynamic>{
+      "contactPage": {
+        "Email": email,
+        "Fname": fname,
+        "Lname": lname,
+        "Linkedin": "",
+        "Website": ""
+      },
+      "bioPage":{
+        "Current Employment": "",
+        "Education": "",
+        "Experience": ""
+      }
+    };
+    DocumentReference docRef = await database.collection("cards").add(card);
+    return docRef.id;
   }
 }
