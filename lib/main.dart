@@ -1,3 +1,4 @@
+import 'package:carded/QRScanner.dart';
 import 'package:carded/settings_screen.dart';
 import 'package:carded/sign_up_screen.dart';
 import 'package:carded/wallet_display_screen.dart';
@@ -109,6 +110,18 @@ class CardedHomePage extends StatelessWidget{
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => QRCodePage(loggedIn: User("testID", "testEmail", "testCard", []))),
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 200.0, // set the desired width here
+                        child: ElevatedButton(
+                          child: Text("QR Scanner"),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => QRScannerPage()),
                             );
                           },
                         ),
