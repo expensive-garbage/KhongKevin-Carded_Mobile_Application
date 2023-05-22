@@ -1,6 +1,10 @@
+import 'package:carded/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'user_card.dart';
+import 'wallet_display_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'user.dart' as thisUser;
 
 class GuestSignInScreen extends StatefulWidget {
   @override
@@ -11,7 +15,7 @@ class _GuestSignInScreenState extends State<GuestSignInScreen> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
 
   void dispose() {
     firstNameController.dispose();
@@ -26,9 +30,9 @@ class _GuestSignInScreenState extends State<GuestSignInScreen> {
     String email = emailController.text.trim();
 
     try {
-      UserCredential userCredential = await _auth.signInAnonymously();
-      User? user = userCredential.user;
-      if (user != null) {
+      auth.UserCredential userCredential = await _auth.signInAnonymously();
+      auth.User? firebaseUser = userCredential.user;
+      if (firebaseUser != null) {
         String cardId = await User_Card.addCard(firstName, lastName, email);
         print('Guest signed in:');
         print('First Name: $firstName');
@@ -36,6 +40,23 @@ class _GuestSignInScreenState extends State<GuestSignInScreen> {
         print('Email: $email');
         await _addUser(email, cardId);
         showSnackBar(context, 'Success');
+
+        DocumentSnapshot docSnapshot = await FirebaseFirestore.instance.collection('users').doc(firebaseUser.uid).get();
+
+        User loggedIn = User(
+            docSnapshot.id,
+            docSnapshot['Email'],
+            docSnapshot['Card'],
+            docSnapshot['Wallet']);
+
+
+        // TODO WHY NO WORK
+        //await Future.delayed(Duration(seconds: 3));
+        //page not building right?
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => WalletDisplayScreen(loggedin: loggedIn)),
+        );
       }
     } catch (e) {
       print(e);
@@ -44,7 +65,7 @@ class _GuestSignInScreenState extends State<GuestSignInScreen> {
   }
 
   Future<void> _addUser(String email, String cardId) {
-    return database.collection('users').add({
+    return FirebaseFirestore.instance.collection('users').add({
       'Email': email,
       'Card': cardId,
       'Wallet': [],

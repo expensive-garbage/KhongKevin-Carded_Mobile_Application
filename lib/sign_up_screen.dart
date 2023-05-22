@@ -40,7 +40,7 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Text("Sign up with email"),
+                  child: Text("   Guest sign up with email    "),
                 ),],
             )
           )

@@ -15,10 +15,24 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
   late AnimationController _controller;
   late Animation<Offset> _slideAnimation;
   late Animation<double> _fadeAnimation;
+  late String firstName;
+  late String lastName;
+  late String email;
+
   bool _isFlipped = false;
+
+
+
+  Future<void> initUserDetails() async {
+    firstName = await widget.loggedin.firstName;
+    lastName = await widget.loggedin.lastName;
+    email = await widget.loggedin.email;
+    setState(() {});  // update the UI
+  }
 
   @override
   void initState() {
+
     super.initState();
     _controller = AnimationController(
       duration: const Duration(milliseconds: 500),
@@ -38,6 +52,7 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
       parent: _controller,
       curve: Curves.easeInOut,
     ));
+    initUserDetails();
   }
 
   @override
@@ -91,10 +106,14 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
         ],
               ),
             ),
+
+
             if (!_isFlipped)
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // ADD USER'S OWN CARD HERE
+                  CardDisplay(firstName: firstName, lastName: lastName, email: email),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(

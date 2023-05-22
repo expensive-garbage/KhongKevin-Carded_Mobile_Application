@@ -42,76 +42,75 @@ class CardedHomePage extends StatelessWidget{
     return Scaffold(
         appBar: AppBar(title: const Text("Carded")),
         body: FractionallySizedBox(
-          heightFactor: 0.7,
-          child:
-          Center(
+            heightFactor: 0.7,
             child:
-            SingleChildScrollView(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(width: 200.0, child: ElevatedButton(
-                      child: Text("Login Page"),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginScreen()),
-                        );
-                      },
-                    ),
-                  ),
+            Center(
+                child:
+                SingleChildScrollView(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(width: 200.0, child: ElevatedButton(
+                            child: Text("Login Page"),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => LoginScreen()),
+                              );
+                            },
+                          ),
+                          ),
 
-                  SizedBox(height: 50),
-                  SizedBox(
-                    width: 200.0, // set the desired width here
-                    child: ElevatedButton(
-                      child: Text("Sign Up Page"),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SignUpScreen()),
-                        );
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 50),
-                  SizedBox(
-                    width: 200.0, // set the desired width here
-                    child: ElevatedButton(
-                      child: Text("Settings"),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SettingsScreen()),
-                        );
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 50),
+                          SizedBox(height: 50),
+                          SizedBox(
+                            width: 200.0, // set the desired width here
+                            child: ElevatedButton(
+                              child: Text("Sign Up Page"),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SignUpScreen()),
+                                );
+                              },
+                            ),
+                          ),
+                          SizedBox(height: 50),
+                          SizedBox(
+                            width: 200.0, // set the desired width here
+                            child: ElevatedButton(
+                              child: Text("Settings"),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SettingsScreen()),
+                                );
+                              },
+                            ),
+                          ),
+                          SizedBox(height: 50),
 
-                  //This is a test, hard coded wallet in here in case the sign in / login authroization does not work :D
-                  SizedBox(
-                    width: 200.0, // set the desired width here
-                    child: ElevatedButton(
-                      child: Text("wallet display"),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => WalletDisplayScreen(loggedin: User("testID", "testEmail", "testCard", []))),
-                        );
-                      },
+                          //This is a test, hard coded wallet in here in case the sign in / login authroization does not work :D
+                          SizedBox(
+                            width: 200.0, // set the desired width here
+                            child: ElevatedButton(
+                              child: Text("wallet display"),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => WalletDisplayScreen(loggedin: User("testID", "testEmail", "testCard", []))),
+                                );
+                              },
 
-                    ),
-                  ),
+                            ),
+                          ),
 
-                ]
+                        ]
+                    )
+                )
             )
-            )
-          )
         )
-        );
+    );
 
   }
 
 }
-

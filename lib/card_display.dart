@@ -1,3 +1,4 @@
+import 'package:carded/user.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui'; // Import dart:ui library to use Image.asset
 
@@ -11,7 +12,7 @@ class CardDisplay extends StatelessWidget {
 
   final String defaultProfilePicture = 'assets/images/profile.png'; // Declare the asset path for the default profile picture
 
-  CardDisplay({
+  CardDisplay( {
     required this.firstName,
     required this.lastName,
     required this.email,
@@ -19,6 +20,7 @@ class CardDisplay extends StatelessWidget {
     this.linkedin,
     this.website,
   });
+
 
   @override
   Widget build(BuildContext context) {

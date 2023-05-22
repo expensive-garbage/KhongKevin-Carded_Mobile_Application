@@ -17,6 +17,27 @@ class User{
     wallet = List<String>.from(w);
   }
 
+  Future<String> get firstName async {
+    DocumentSnapshot cardDocument = await database.collection('cards').doc(card).get();
+    if (cardDocument.exists) {
+      Map<String, dynamic> cardData = cardDocument.data() as Map<String, dynamic>;
+      return cardData['contactPage']['Fname'] as String;
+    } else {
+      throw Exception('Card document does not exist.');
+    }
+  }
+
+  Future<String> get lastName async {
+    DocumentSnapshot cardDocument = await database.collection('cards').doc(card).get();
+    if (cardDocument.exists) {
+      Map<String, dynamic> cardData = cardDocument.data() as Map<String, dynamic>;
+      return cardData['contactPage']['Fname'] as String;
+    } else {
+      throw Exception('Card document does not exist.');
+    }
+  }
+
+
 
   static Future<void> addUser(String email, String fname, String lname) async {
     String cardID = await User_Card.addCard(fname, lname, email);
