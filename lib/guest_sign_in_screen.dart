@@ -13,7 +13,6 @@ class _GuestSignInScreenState extends State<GuestSignInScreen> {
   TextEditingController emailController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  @override
   void dispose() {
     firstNameController.dispose();
     lastNameController.dispose();
@@ -36,9 +35,11 @@ class _GuestSignInScreenState extends State<GuestSignInScreen> {
         print('Last Name: $lastName');
         print('Email: $email');
         await _addUser(email, cardId);
+        showSnackBar(context, 'Success');
       }
     } catch (e) {
       print(e);
+      showSnackBar(context, 'Fail');
     }
   }
 
@@ -46,12 +47,18 @@ class _GuestSignInScreenState extends State<GuestSignInScreen> {
     return database.collection('users').add({
       'Email': email,
       'Card': cardId,
-      'Wallet': []
+      'Wallet': [],
     });
   }
 
+  void showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
