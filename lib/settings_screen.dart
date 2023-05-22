@@ -9,18 +9,16 @@ class SettingsScreen extends StatelessWidget {
         body: FractionallySizedBox(
             heightFactor: 0.7,
             child: Center(
-              child:Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Idk what to put here lol"),
-                  ElevatedButton(onPressed: () {  },
-                      child: Text("I am broke"))],
-              )
+                child:Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text("Idk what to put here lol"),
+                    ElevatedButton(onPressed: () {  },
+                        child: Text("I am broke"))],
+                )
             )
         )
-
     );
   }
-
 }

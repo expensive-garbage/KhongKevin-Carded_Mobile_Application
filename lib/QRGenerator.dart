@@ -15,14 +15,13 @@ class QRCodePage extends StatelessWidget {
       ),
       body: Center(
         child: RepaintBoundary(
-          child: QrImageView(
-            //unique per id
-            data: loggedIn.refId,
-            version: QrVersions.auto,
-            size: 320,
-            gapless: false,
-          )
-
+            child: QrImageView(
+              //unique per id
+              data: loggedIn.refId,
+              version: QrVersions.auto,
+              size: 320,
+              gapless: false,
+            )
         ),
       ),
     );

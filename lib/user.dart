@@ -32,6 +32,6 @@ class User{
 
   @override
   String toString(){
-    return("${refId}, ${email}, ${card}, ${wallet}");
+    return("$refId, $email, $card, $wallet");
   }
 }

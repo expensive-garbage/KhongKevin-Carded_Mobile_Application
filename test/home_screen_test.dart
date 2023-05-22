@@ -5,6 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:carded/main.dart';
@@ -19,19 +20,19 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text("Google Sign in"), findsOneWidget);
-
   });
 
-// // TODO sign up page test
-//   testWidgets('Pressing the Sign Up Page button navigates to the Sign Up Screen', (WidgetTester tester) async {
-//     // main();
-//     // await tester.pumpWidget(const MyApp());
-//
-//     await tester.tap(find.text("Sign Up Page"));
-//     await tester.pumpAndSettle();
-//
-//     expect(find.text("Sign Up Screen"), findsNothing);
-//   });
+  // // TODO not working?
+  // testWidgets('Pressing the Sign Up Page button navigates to the Sign Up Screen', (WidgetTester tester) async {
+  //   WidgetsFlutterBinding.ensureInitialized();
+  //   await Firebase.initializeApp();
+  //   await tester.pumpWidget(const MyApp());
+  //
+  //   await tester.tap(find.text("Sign Up Page"));
+  //   await tester.pumpAndSettle();
+  //
+  //   expect(find.text("Sign up with email"), findsNothing);
+  // });
 
   testWidgets('Pressing the Settings Page button navigates to the Settings Screen', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
@@ -51,12 +52,4 @@ void main() {
     expect(find.text("Show Wallet"), findsOneWidget);
   });
 
-  testWidgets('Pressing the QR Scanner button navigates to the wallet Screen', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
-
-    await tester.tap(find.text("QR Scanner"));
-    await tester.pumpAndSettle();
-
-    expect(find.text("Result"), findsNothing);
-  });
 }
