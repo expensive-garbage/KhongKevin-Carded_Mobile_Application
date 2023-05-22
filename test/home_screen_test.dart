@@ -22,6 +22,17 @@ void main() {
 
   });
 
+// // TODO sign up page test
+//   testWidgets('Pressing the Sign Up Page button navigates to the Sign Up Screen', (WidgetTester tester) async {
+//     // main();
+//     // await tester.pumpWidget(const MyApp());
+//
+//     await tester.tap(find.text("Sign Up Page"));
+//     await tester.pumpAndSettle();
+//
+//     expect(find.text("Sign Up Screen"), findsNothing);
+//   });
+
   testWidgets('Pressing the Settings Page button navigates to the Settings Screen', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
 
@@ -38,5 +49,14 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text("Show Wallet"), findsOneWidget);
+  });
+
+  testWidgets('Pressing the QR Scanner button navigates to the wallet Screen', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+
+    await tester.tap(find.text("QR Scanner"));
+    await tester.pumpAndSettle();
+
+    expect(find.text("Result"), findsNothing);
   });
 }
