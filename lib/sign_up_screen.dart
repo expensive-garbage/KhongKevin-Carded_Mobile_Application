@@ -16,17 +16,19 @@ class SignUpScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SignInButton(
-                  Buttons.Google,
-                  onPressed: () {
-                    _googleSignIn.signIn().then((value) {
-                      List<String> name = value!.displayName!.split(" ");
-                      String Fname = name.first;
-                      String Lname = name.last;
-                      String Email = value.email;
-                      User.addUser(Email, Fname, Lname);
-                    });
-                  },
+                Center(
+                  child: SignInButton(
+                      Buttons.Google,
+                      onPressed: () {
+                        _googleSignIn.signIn().then((value) {
+                          List<String> name = value!.displayName!.split(" ");
+                          String Fname = name.first;
+                          String Lname = name.last;
+                          String Email = value.email;
+                          User.addUser(Email, Fname, Lname);
+                        });
+                      },
+                    )
                 )],
             )
           )
