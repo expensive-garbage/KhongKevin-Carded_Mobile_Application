@@ -17,6 +17,7 @@ class User{
     wallet = List<String>.from(w);
   }
 
+
   static Future<void> addUser(String email, String fname, String lname) async {
     String cardID = await User_Card.addCard(fname, lname, email);
     print("Card added");
@@ -31,6 +32,6 @@ class User{
 
   @override
   String toString(){
-    return("${refId}, ${email}, ${card}, ${wallet}");
+    return("$refId, $email, $card, $wallet");
   }
 }

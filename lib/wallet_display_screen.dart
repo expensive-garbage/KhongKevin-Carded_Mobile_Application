@@ -1,3 +1,5 @@
+import 'package:carded/QRGenerator.dart';
+import 'package:carded/QRScanner.dart';
 import 'package:carded/user.dart';
 import 'package:flutter/material.dart';
 import 'card_display.dart';
@@ -55,20 +57,24 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.loggedin.email)), body: FractionallySizedBox(heightFactor: 0.9,
-          child: Center(
-            child: AnimatedBuilder(
+      appBar: AppBar(title: Text(widget.loggedin.email)),
+      body: Stack(
+          alignment: Alignment.center,
+          children: [
+            AnimatedBuilder(
               animation: _controller,
               builder: (context, child) {
                 return SlideTransition(
                   position: _slideAnimation, child: FadeTransition(
-                    opacity: _fadeAnimation, child: child,
-                  ),
+                  opacity: _fadeAnimation, child: child,
+                ),
                 );
-                }, child: ListView(
-                  children: [
+              },
+              child: ListView(
+                children: [
                   SizedBox(width: 50, height: 20),
                   CardDisplay(firstName: "Kevin", lastName: "Khong", email: "kevin79ers@gmail.com", linkedin: "linkedin.com/kevin-khong", website: "kevinkhong-portfolio.com",),
                   SizedBox(width: 50, height: 20),
@@ -80,13 +86,37 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
                   SizedBox(width: 50, height: 20),
                   CardDisplay(firstName: "Castel", lastName: "Vilallobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
                   SizedBox(width: 50, height: 20),
-                    CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
-                    SizedBox(width: 50, height: 20),
-                  ],
-                ),
+                  CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
+                  SizedBox(width: 50, height: 20),
+                ],
+              ),
             ),
-          ),
-        ),
+            if (!_isFlipped)
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => QRScannerPage()),
+                      );
+                    },
+                    child: Text('Scan QR Code'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => QRCodePage(loggedIn: User("testID", "testEmail", "testCard", []))),
+                      );
+                    },
+                    child: Text('Display Your QR Code'),
+                  ),
+                ],
+              ),
+          ]
+      ),
       bottomNavigationBar: Container(
         height: 30,
         alignment: Alignment.bottomCenter,
@@ -123,5 +153,5 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
       ),
     );
   }
-}
 
+}

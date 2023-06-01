@@ -39,6 +39,5 @@ class _TextInputWidgetState extends State<UsernameTextField> {
       ),
       Text(text)
     ]);
-
   }
 }
