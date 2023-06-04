@@ -14,11 +14,24 @@ class User with ChangeNotifier {
 
   User.fromDocument(DocumentSnapshot doc) {
     this.refId = doc.id;
-    this.email = doc['email'] ?? '';
-    this.card = doc['card'] ?? '';
-    this.wallet = List<String>.from(doc['wallet'] ?? []);
+    try {
+      this.email = doc.get('Email');
+    } catch (e) {
+      this.email = '';
+    }
+    try {
+      this.card = doc.get('Card');
+    } catch (e) {
+      this.card = '';
+    }
+    try {
+      this.wallet = List<String>.from(doc.get('Wallet'));
+    } catch (e) {
+      this.wallet = [];
+    }
     notifyListeners();
   }
+
 
   Future<void> addCardToWallet(String cardId) async {
     wallet.add(cardId);
@@ -76,5 +89,6 @@ class UserProvider with ChangeNotifier {
     _user = user;
     notifyListeners();
   }
+
 }
 
