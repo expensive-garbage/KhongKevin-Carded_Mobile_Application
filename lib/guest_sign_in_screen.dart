@@ -6,7 +6,6 @@ class GuestSignInScreen extends StatefulWidget {
   @override
   _GuestSignInScreenState createState() => _GuestSignInScreenState();
 }
-
 class _GuestSignInScreenState extends State<GuestSignInScreen> {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
@@ -20,7 +19,7 @@ class _GuestSignInScreenState extends State<GuestSignInScreen> {
     super.dispose();
   }
 
-  void signInGuest() async {
+  Future<User?> signInGuest() async {
     String firstName = firstNameController.text.trim();
     String lastName = lastNameController.text.trim();
     String email = emailController.text.trim();
@@ -34,22 +33,28 @@ class _GuestSignInScreenState extends State<GuestSignInScreen> {
         print('First Name: $firstName');
         print('Last Name: $lastName');
         print('Email: $email');
-        await _addUser(email, cardId);
+        await _addUser(user.uid, email, cardId);
         showSnackBar(context, 'Success');
+        Navigator.pop(context);  // navigate back to home screen
+        return user; // Return the signed-in user
       }
     } catch (e) {
       print(e);
       showSnackBar(context, 'Fail');
     }
+    return null;
   }
 
-  Future<void> _addUser(String email, String cardId) {
-    return database.collection('users').add({
+  Future<void> _addUser(String uid, String email, String cardId) {
+    return database.collection('users').doc(uid).set({
       'Email': email,
       'Card': cardId,
       'Wallet': [],
     });
   }
+
+
+
 
   void showSnackBar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -58,7 +63,7 @@ class _GuestSignInScreenState extends State<GuestSignInScreen> {
       ),
     );
   }
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

@@ -1,29 +1,24 @@
-
+import 'package:flutter/foundation.dart';
 import 'package:carded/user_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 FirebaseFirestore database = FirebaseFirestore.instance;
 
-class User{
+class User with ChangeNotifier {
   late String refId;
   late String email;
   late String card;
-  List<String> wallet = [];
+  late List<String> wallet;
 
-  User(String r, String e, String c, List<dynamic> w){
-    refId = r;
-    email = e;
-    card = c;
-    wallet = List<String>.from(w);
-  }
+  User(this.refId, this.email, this.card, this.wallet);
 
   User.fromDocument(DocumentSnapshot doc) {
     this.refId = doc.id;
     this.email = doc['email'] ?? '';
     this.card = doc['card'] ?? '';
     this.wallet = List<String>.from(doc['wallet'] ?? []);
+    notifyListeners();
   }
-
 
   Future<void> addCardToWallet(String cardId) async {
     wallet.add(cardId);
@@ -34,8 +29,8 @@ class User{
     });
 
     print("Card $cardId added to wallet");
+    notifyListeners();
   }
-
 
   static Future<void> addUser(String email, String fname, String lname) async {
     String cardID = await User_Card.addCard(fname, lname, email);
@@ -62,10 +57,24 @@ class User{
     return walletUsers;
   }
 
-
-
   @override
   String toString(){
     return("$refId, $email, $card, $wallet");
   }
 }
+
+class UserProvider with ChangeNotifier {
+  User? _user;
+
+  UserProvider() {
+    _user = User("defaultID", "defaultEmail", "defaultCard", []);
+  }
+
+  User? get user => _user;
+
+  void setUser(User user) {
+    _user = user;
+    notifyListeners();
+  }
+}
+

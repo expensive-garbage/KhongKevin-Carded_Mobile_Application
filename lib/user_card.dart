@@ -1,34 +1,22 @@
 import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 FirebaseFirestore database = FirebaseFirestore.instance;
 
-class User_Card {
-  late Image profilePicture;
-  Map<String, String> contactPage = {
-    'Fname': '',
-    'Lname':'',
-    'Email':'',
-    'Linkedin':'',
-    'Website':''
-  };
-  Map<String, String> bioPage = {
-    'Education':'',
-    'Experience':'',
-    'Current Employment':''
-  };
-  List<String> skills = [];
+class User_Card with ChangeNotifier {
+  late Image? profilePicture;
+  late Map<String, String> contactPage;
+  late Map<String, String> bioPage;
+  late List<String> skills;
 
-  User_Card(String fname, String lname, String email){
-    contactPage['Fname'] = fname;
-    contactPage['Lname'] = lname;
-    contactPage['Email'] = email;
-  }
+  User_Card(this.contactPage, this.bioPage, this.skills);
 
   User_Card.fromDocument(DocumentSnapshot doc) {
     this.contactPage = Map<String, String>.from(doc['contactPage'] ?? {});
     this.bioPage = Map<String, String>.from(doc['bioPage'] ?? {});
     this.skills = List<String>.from(doc['skills'] ?? []);
+    notifyListeners();
   }
 
   static Future<String> addCard(String fname, String lname, String email) async {
