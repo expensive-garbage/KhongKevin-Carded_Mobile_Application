@@ -1,6 +1,7 @@
 import 'package:carded/QRGenerator.dart';
 import 'package:carded/QRScanner.dart';
 import 'package:carded/user.dart';
+import 'package:carded/user_card.dart';
 import 'package:flutter/material.dart';
 import 'card_display.dart';
 
@@ -16,7 +17,7 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
   late Animation<Offset> _slideAnimation;
   late Animation<double> _fadeAnimation;
   bool _isFlipped = false;
-
+  List<User_Card> _walletUsers = [];
   @override
   void initState() {
     super.initState();
@@ -38,6 +39,11 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
       parent: _controller,
       curve: Curves.easeInOut,
     ));
+    widget.loggedin.fetchWalletUsers().then((users) {
+      setState(() {
+        _walletUsers = users;
+      });
+    });
   }
 
   @override
@@ -57,7 +63,6 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
   }
 
   @override
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.loggedin.email)),
@@ -68,29 +73,28 @@ class _WalletDisplayScreenState extends State<WalletDisplayScreen> with SingleTi
               animation: _controller,
               builder: (context, child) {
                 return SlideTransition(
-                  position: _slideAnimation, child: FadeTransition(
-                  opacity: _fadeAnimation, child: child,
-                ),
+                  position: _slideAnimation,
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: child,
+                  ),
                 );
               },
-              child: ListView(
-                children: [
-                  SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Kevin", lastName: "Khong", email: "kevin79ers@gmail.com", linkedin: "linkedin.com/kevin-khong", website: "kevinkhong-portfolio.com",),
-                  SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Castel", lastName: "Villalobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
-                  SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
-                  SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Kevin", lastName: "Khong", email: "kevin79ers@gmail.com", linkedin: "linkedin.com/kevin-khong", website: "kevinkhong-portfolio.com",),
-                  SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Castel", lastName: "Vilallobos", email: "cvbos19@yahoo.com", linkedin: "linkedin.com/castel-vil",),
-                  SizedBox(width: 50, height: 20),
-                  CardDisplay(firstName: "Ayush", lastName: "Nair", email: "Aniar@gmail.com", website: "ayush-projects.com",),
-                  SizedBox(width: 50, height: 20),
-                ],
+              child: ListView.builder(
+                itemCount: _walletUsers.length,
+                itemBuilder: (context, index) {
+                  return CardDisplay(
+                    firstName: _walletUsers[index].contactPage['Fname'] ?? 'N/A',
+                    lastName: _walletUsers[index].contactPage['Lname'] ?? 'N/A',
+                    email: _walletUsers[index].contactPage['Email'] ?? 'N/A',
+                    linkedin: _walletUsers[index].contactPage['Linkedin'] ?? 'N/A',
+                    website: _walletUsers[index].contactPage['Website'] ?? 'N/A',
+
+                  );
+                },
               ),
             ),
+
             if (!_isFlipped)
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,

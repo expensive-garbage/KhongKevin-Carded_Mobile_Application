@@ -25,6 +25,12 @@ class User_Card {
     contactPage['Email'] = email;
   }
 
+  User_Card.fromDocument(DocumentSnapshot doc) {
+    this.contactPage = Map<String, String>.from(doc['contactPage'] ?? {});
+    this.bioPage = Map<String, String>.from(doc['bioPage'] ?? {});
+    this.skills = List<String>.from(doc['skills'] ?? []);
+  }
+
   static Future<String> addCard(String fname, String lname, String email) async {
     final card = <String, dynamic>{
       "contactPage": {
